@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Patterns</title>
+	<style type="text/css">
+		.center{
+			text-align: center;
+			background-color: grey;
+			border: 1px solid black;
+		}
+	</style>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+	<label>Enter length :</label>
+	<input id="pattern_length" type="text" name="Length">
+	<button id="pattern_generator">Generate</button>
+</div>
+<div class="container-fluid">
+	
+</div>
+<div class="container">
+	
+</div>
+
+<script type="text/javascript">
+	var inputObj = [{score:1},{score:2},{score:3},{score:3},{score:5},{score:6},{score:6},{score:6},{score:9},{score:10},{score:12},{score:12},{score:13}];
+
+	$(document).ready(function(){
+		console.log("Lets do this");
+		$("#pattern_generator").click(function(){
+			$( ".container-fluid" ).empty();
+			var pattern_length = $('#pattern_length')[0].value;
+			for(var i = 0 , row = 0; i < pattern_length;){
+			console.log("\n");
+			if(row%2 == 0){
+				for(var j = 0; j < 2; j++){
+					i++;
+					if(i > pattern_length)
+					{
+						break;
+					}
+					$( ".container-fluid" ).append( "<div class='center col-md-6'>Evenrow</p></div>" );
+				}
+			}
+			else{
+				for(var j = 0; j < 3; j++){
+					i++;
+					if(i > pattern_length)
+					{
+						break;
+					}
+					$( ".container-fluid" ).append( "<div class='center col-md-4'>Oddrow</p></div>" );
+				}	
+			}
+			row++;
+		}
+		});
+
+	});
+
+	var carry = 0;
+	for(var i = inputObj.length -1 ,rank=1; i > 0 ; i--){
+		console.log("i = "+ i + " Score : " + inputObj[i].score + " Rank: " + rank);
+		if(inputObj[i].score == inputObj[i-1].score){
+			carry = carry + 1;
+		}
+		else{
+			rank = rank + carry + 1;
+			carry = 0;
+		}
+	}
+</script>
+</body>
+</html>
